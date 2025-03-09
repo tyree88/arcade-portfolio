@@ -1,0 +1,29 @@
+/* styles/typography.scss */
+@font-face {
+    font-family: 'RetroSerif';
+    src: url('/fonts/your-retro-font.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .retro-text {
+    font-family: 'RetroSerif', serif;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  }
+  
+  .grainy-texture {
+    position: relative;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/textures/grain.png');
+      opacity: 0.15;
+      pointer-events: none;
+    }
+  }
