@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,8 +18,8 @@ export function Button({
   const baseStyles = 'rounded-full transition-colors flex items-center justify-center';
   
   const variantStyles = {
-    primary: 'bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc]',
-    secondary: 'border border-solid border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent'
+    primary: 'bg-foreground text-background hover:bg-[rgb(56,56,56)] dark:hover:bg-[rgb(204,204,204)]',
+    secondary: 'border border-solid border-black/[.08] dark:border-white/[.145] hover:bg-[rgb(242,242,242)] dark:hover:bg-[rgb(26,26,26)] hover:border-transparent'
   };
   
   const sizeStyles = {

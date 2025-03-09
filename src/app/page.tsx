@@ -1,10 +1,13 @@
+'use client';
+
 import { Scene } from "@/components/three/Scene";
 import { Button } from "@/components/ui/Button";
+import { Suspense } from "react";
 // import useResponsive from "./hooks/useResponsive";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-4 md:p-8">
+    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-4 md:p-8 bg-background text-foreground">
       <header className="py-4 flex items-center justify-between">
         <h1 className="text-2xl md:text-3xl font-bold">Arcade Portfolio</h1>
         <nav className="hidden md:flex space-x-6">
@@ -14,7 +17,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <main className="flex flex-col items-center justify-center gap-8">
+      <main className="flex flex-col items-center justify-center gap-8 py-12">
         <div className="text-center mb-8">
           <h2 className="text-4xl md:text-6xl font-bold mb-4">Interactive Portfolio Experience</h2>
           <p className="text-lg md:text-xl max-w-2xl mx-auto">
@@ -22,7 +25,9 @@ export default function Home() {
           </p>
         </div>
 
-        <Scene />
+        <Suspense fallback={<div className="w-full h-[50vh] md:h-[70vh] flex items-center justify-center bg-black/10 dark:bg-white/5 rounded-lg">Loading 3D scene...</div>}>
+          <Scene />
+        </Suspense>
 
         <div className="flex gap-4 mt-8">
           <Button variant="primary" size="lg">
