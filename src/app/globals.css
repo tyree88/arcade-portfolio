@@ -39,7 +39,7 @@ body {
 
 /* Retro text effect for headings */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif;
+  font-family: 'RetroSerif', serif;
   text-shadow: 2px 2px 0px rgba(56, 93, 65, 0.7);
   letter-spacing: 0.5px;
 }

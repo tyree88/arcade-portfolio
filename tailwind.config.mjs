@@ -23,6 +23,7 @@ export default {
         mono: ["var(--font-mono)", "monospace"],
         serif: ["'RetroSerif'", "serif"],
       },
+      fontSize: {},
       boxShadow: {
         'ps': '0 4px 0 0 #7e976d',
       },
