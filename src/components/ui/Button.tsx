@@ -36,3 +36,50 @@ export function Button({
     </button>
   );
 }
+import React from 'react';
+
+type ButtonProps = {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  onClick?: () => void;
+};
+
+export function Button({
+  children,
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  onClick,
+  ...props
+}: ButtonProps) {
+  const baseClasses = "relative font-bold text-uppercase letter-spacing-1 transition-all duration-200 transform";
+  
+  const variantClasses = {
+    primary: "bg-gradient-to-r from-ps-green to-ps-sage border-2 border-ps-tan text-ps-cream",
+    secondary: "bg-ps-cream text-ps-brown border-2 border-ps-brown",
+  };
+  
+  const sizeClasses = {
+    sm: "px-3 py-1 text-sm",
+    md: "px-4 py-2",
+    lg: "px-6 py-3 text-lg",
+  };
+  
+  const shadowClasses = variant === 'primary' 
+    ? "shadow-ps hover:shadow-none" 
+    : "shadow-[0_4px_0_0_#5d4f4d] hover:shadow-none";
+  
+  const hoverClasses = "hover:translate-y-1 active:translate-y-2";
+  
+  return (
+    <button
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${shadowClasses} ${hoverClasses} ${className}`}
+      onClick={onClick}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}

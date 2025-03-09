@@ -1,22 +1,172 @@
+
 @import "tailwindcss/preflight";
 @tailwind utilities;
+@import "../styles/typography.scss";
 
 :root {
-  --background: 255 255 255;
-  --foreground: 23 23 23;
+  /* PlayStation-inspired retro colors */
+  --background: 93 79 77; /* #5d4f4d */
+  --foreground: 237 230 210; /* #ede6d2 */
+  --accent-green: 56 93 65; /* #385d41 */
+  --accent-tan: 223 190 115; /* #dfbe73 */
+  --accent-sage: 126 151 109; /* #7e976d */
+  --accent-beige: 175 159 134; /* #af9f86 */
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 10 10 10;
-    --foreground: 237 237 237;
-  }
+/* PlayStation-inspired light grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEDElEQVRogZWaW5LkIAhFb21N7X9HvYC+fFRVd08CgqBHzI8ZJXLgAkZ+7vt+7vt+zL/jOJ7nebbP53met2Uf+9zP8zzHcTzv67rellVl7/t+jnPZWubYZbd1nV3uOM/nOeZnnOe2vPI0D8Z5P9c1lkFdUoZty7qOtYz36z6fccxnfB/Lub+fMGSQZ5dlnvE5lrN8WNdxPWOZbc6ue9a3y7BMln+et+XKMrZMMpnXiLDK0D6U0TZmeQwfluf6kPcMQ5QhtsyYTvIZZdhnlseyWc7W03ZmfbPeWR5lHOcJI7KeE8Fsk3Ud9znKsVyWFesRs8k6t/1ZPsNneeUzygAjSVb2oVx9jjIZWci2v7MP26yfo0zW/33ukCEjyXuWiXJRVqyLfbId7GO/F9s62+Q5ypZtVTmx/m17lsswCSPJ5lk+2x5lsx7ZZ/1M5dX2aRvX/ijvF+cMl23MNrAPZZ53ypGH7g9huUzI7JPxg7LnOSPGLJf1iXWSabHtrGfWP/v+0l+GzTpkm7KtHEA8f8hnPVgHto35iG1jW/3CPNsMW88yWf+MH2wT68m2q/2zbR8wku3Oejx7KJt5hW1a9c+8xnNsB8vKrA6vWddU/qsH4GJ5rjc9I5ZX5VWerGxb9leOqbxmPdl2tc0iZ2S7f+ER5pUsn2Upk+VZD7Wx6pt1VduyzFfOSLYr29g2jUNkO7Mf20qbf9me/V7E6qAhZiLbNg4Jtplt5CDKNrGdsq3a7lnPeaiyPOvKPs+6ZjnWd+sRRrJNqg8HHeY9lVUZ1pVtV/3nAXRQj21ntpVtP4CRLJsDhG1R5RRDalbZJ8vIg5f9s75Z1vYh3pmQPwaPGHlVHNus68oyq73tO+vHeo+M3DOyB5PamXVmXdgGlmFb2QYZ1KXKO4ZPvMayzEPsh/Is+8yjSnXINrMt2aasp5hhffOs+nzACNua9WXb1f7qk7Jkh+zD9nKAab9lXbf9HyNZVvXNumd9VH75UtnE9l6QkVe3xW1UWZXN+rJdajsnmzxoZftsD8swD6n9WQfrPNsNGeYBDoYsm21QHVRWZZhnXR/ykspqH9aJ9c46s05Z16gD64yjw0iWZf1UR5Vhe7J+6sMBpTxFOdWTbVQ51oN9oUfkBUZYhvnhM/3NdmR9VYZ1zzLMX8xLGU7tV10YJx4wwnbn1Gn2UXnVl+3Osvr9wPpl/dk25h3mJ9ZrHprH/K0M28oBJKdEbd84JGwD61BlmYdYN7ZLZVk3tZnto84fMJLlyn5sh+rLurOPylK+6qP5ie2WvEWdVF6Pl24P28ABxEGgemS91T61n23OurGfs05Mn+oV5qk8TNS2bLesO9v35yflTBz/A1BUWxF8tXQWAAAAAElFTkSuQmCC");
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 9999;
 }
 
 body {
   color: rgb(var(--foreground));
   background: rgb(var(--background));
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Retro text effect for headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif;
+  text-shadow: 2px 2px 0px rgba(56, 93, 65, 0.7);
+  letter-spacing: 0.5px;
+}
+
+/* PlayStation button-like styling */
+.btn-playstation {
+  position: relative;
+  background: linear-gradient(135deg, #385d41, #5d4f4d);
+  border: 2px solid #dfbe73;
+  color: #ede6d2;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 0 0 #7e976d;
+  transform: translateY(0);
+}
+
+.btn-playstation:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 #7e976d;
+}
+
+.btn-playstation:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 0 #7e976d;
+}
+
+/* Arcade cabinet styling */
+.arcade-cabinet {
+  background: linear-gradient(145deg, #385d41, #7e976d);
+  border: 4px solid #dfbe73;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.arcade-cabinet::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* CRT screen effect */
+.crt-screen {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+}
+
+.crt-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Japanese-inspired gradient backgrounds */
+.bg-sunrise {
+  background: linear-gradient(135deg, #dfbe73, #ede6d2);
+}
+
+.bg-forest {
+  background: linear-gradient(135deg, #385d41, #7e976d);
+}
+
+.bg-twilight {
+  background: linear-gradient(135deg, #5d4f4d, #af9f86);
+}
+
+/* Animation for elements */
+.hover-bounce {
+  transition: transform 0.3s;
+}
+
+.hover-bounce:hover {
+  transform: translateY(-5px);
+}
+
+/* Pixelated border effect */
+.pixel-border {
+  position: relative;
+  border: 2px solid #dfbe73;
+}
+
+.pixel-border::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: transparent;
+  border: 2px dashed #385d41;
+  pointer-events: none;
 }
