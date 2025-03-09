@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 modules = ["nodejs-20", "web"]
 run = "npm run dev"
 
@@ -19,3 +20,49 @@ externalPort = 3001
 [[ports]]
 localPort = 3002
 externalPort = 3002
+=======
+run = "npm run dev"
+hidden = [".build", ".config"]
+entrypoint = "src/app/page.tsx"
+
+[nix]
+channel = "stable-23_11"
+
+[env]
+NEXT_TELEMETRY_DISABLED = "1"
+NODE_ENV = "development"
+PATH = "/home/runner/$REPL_SLUG/.config/npm/node_global/bin:/home/runner/$REPL_SLUG/node_modules/.bin"
+npm_config_prefix = "/home/runner/$REPL_SLUG/.config/npm/node_global"
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = false
+
+[languages.javascript]
+pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
+syntax = "javascript"
+
+[languages.javascript.languageServer]
+start = [ "typescript-language-server", "--stdio" ]
+
+[languages.css]
+pattern = "**/{*.css,*.scss}"
+syntax = "css"
+
+[languages.html]
+pattern = "**/*.html"
+syntax = "html"
+
+[deployment]
+run = ["sh", "-c", "npm run build && npm run start"]
+deploymentTarget = "cloudrun"
+ignorePorts = false
+
+[[ports]]
+localPort = 3000
+externalPort = 80 
+>>>>>>> 129931a (created .replit in cursor)
