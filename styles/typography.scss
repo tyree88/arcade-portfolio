@@ -155,3 +155,23 @@
     transform: translateX(-50%);
   }
 }
+/* Retro-gaming inspired typography */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.retro-title {
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pixel-text {
+  font-family: 'VT323', monospace;
+}
+
+/* Funky serif fonts for retro nostalgia */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+.retro-serif {
+  font-family: 'DM Serif Display', serif;
+}
