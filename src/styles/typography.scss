@@ -1,0 +1,15 @@
+
+/* Typography styles */
+.retro-serif {
+  font-family: 'DM Serif Display', serif;
+}
+
+@font-face {
+  font-family: 'RetroSerif';
+  src: url('/fonts/retroserif.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Additional typography styles can be added here */
