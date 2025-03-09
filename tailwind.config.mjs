@@ -8,9 +8,6 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        serif: ['RetroSerif', 'serif'],
-      },
       colors: {
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",

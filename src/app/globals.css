@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "../styles/typography.scss";
+/* Import typography styles if the file exists */
+/* @import "../styles/typography.scss"; */
 
 :root {
   /* PlayStation-inspired retro colors */

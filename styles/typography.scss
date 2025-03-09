@@ -1,10 +1,14 @@
-
 /* styles/typography.scss */
 @font-face {
   font-family: 'RetroSerif';
-  src: url('/fonts/your-retro-font.woff2') format('woff2');
+  src: url('/fonts/RetroSerif.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+.font-serif {
+  font-family: 'RetroSerif', serif;
 }
 
 /* PlayStation-inspired text styling */
@@ -43,7 +47,6 @@
 /* Grainy texture effect */
 .grainy-texture {
   position: relative;
-  
   &::after {
     content: "";
     position: absolute;
@@ -62,7 +65,6 @@
 .ps-loading {
   position: relative;
   padding-left: 1.5rem;
-  
   &::before {
     content: "";
     position: absolute;
@@ -92,7 +94,6 @@
 .anime-highlight {
   position: relative;
   display: inline-block;
-  
   &::after {
     content: "";
     position: absolute;
@@ -113,7 +114,6 @@
   text-transform: uppercase;
   color: #dfbe73;
   position: relative;
-  
   &::before {
     content: "";
     position: absolute;
@@ -132,7 +132,6 @@
   border-left: 4px solid #385d41;
   padding-left: 1rem;
   position: relative;
-  
   &::before {
     content: "";
     position: absolute;
@@ -143,7 +142,6 @@
     background-color: #dfbe73;
     transform: translateX(-50%);
   }
-  
   &::after {
     content: "";
     position: absolute;
@@ -174,14 +172,6 @@
 
 .retro-serif {
   font-family: 'DM Serif Display', serif;
-}
-/* Typography styles */
-@font-face {
-  font-family: 'RetroSerif';
-  src: url('/fonts/retroserif.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 /* Additional typography styles can be added here */
