@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 { pkgs, ... }: {
   buildInputs = [
     pkgs.nodejs-20_x
@@ -15,4 +16,13 @@
   shellHook = ''
     echo "Environment setup complete."
   '';
+=======
+{ pkgs }: {
+  deps = [
+    pkgs.nodejs-18_x
+    pkgs.nodePackages.typescript-language-server
+    pkgs.yarn
+    pkgs.replitPackages.jest
+  ];
+>>>>>>> e146212 (Assistant checkpoint: Created replit.nix configuration file)
 }
