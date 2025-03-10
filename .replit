@@ -47,6 +47,7 @@ deploymentTarget = "cloudrun"
 localPort = 3000
 externalPort = 80
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 [[ports]]
 localPort = 3001
@@ -65,3 +66,15 @@ localPort = 3004
 externalPort = 3000
 =======
 >>>>>>> 9c1184d (Assistant checkpoint: Created .replit configuration file for Next.js project)
+=======
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Development Server"
+author = 419224
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+>>>>>>> c062950 (Checkpoint before assistant change: Configure Replit workflow for Next.js development server.)
