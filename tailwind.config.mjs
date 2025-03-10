@@ -13,12 +13,12 @@ const config = {
       colors: {
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
-        "ps-green": "rgb(56, 93, 65)",
-        "ps-tan": "rgb(223, 190, 115)",
-        "ps-sage": "rgb(126, 151, 109)",
-        "ps-cream": "rgb(237, 230, 210)",
-        "ps-brown": "rgb(93, 79, 77)",
-        "ps-beige": "rgb(175, 159, 134)",
+        "ps-green": "rgb(var(--ps-green) / <alpha-value>)",
+        "ps-tan": "rgb(var(--ps-tan) / <alpha-value>)",
+        "ps-sage": "rgb(var(--ps-sage) / <alpha-value>)",
+        "ps-cream": "rgb(var(--ps-cream) / <alpha-value>)",
+        "ps-brown": "rgb(var(--ps-brown) / <alpha-value>)",
+        "ps-beige": "rgb(var(--ps-beige) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
