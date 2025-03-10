@@ -2,7 +2,7 @@
 /** @type {import('postcss').Config} */
 export default {
   plugins: {
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
     autoprefixer: {},
   },
 }
