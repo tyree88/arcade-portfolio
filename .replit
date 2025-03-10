@@ -1,10 +1,9 @@
-modules = ["nodejs-20", "web"]
 run = "npm run dev"
 hidden = [".build", ".config"]
 entrypoint = "src/app/page.tsx"
 
 [nix]
-channel = "stable-24_05"
+channel = "stable-23_11"
 
 [env]
 NEXT_TELEMETRY_DISABLED = "1"
@@ -36,19 +35,10 @@ pattern = "**/*.html"
 syntax = "html"
 
 [deployment]
-run = ["sh", "-c", "npm run start"]
-build = ["sh", "-c", "npm run build"]
+run = ["sh", "-c", "npm run build && npm run start"]
 deploymentTarget = "cloudrun"
 ignorePorts = false
 
 [[ports]]
 localPort = 3000
-externalPort = 80
-
-[[ports]]
-localPort = 3001
-externalPort = 3001
-
-[[ports]]
-localPort = 3002
-externalPort = 3002 
+externalPort = 80 

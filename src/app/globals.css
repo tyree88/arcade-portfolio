@@ -13,6 +13,15 @@
   --accent-sage: 126 151 109; /* #7e976d */
   --accent-beige: 175 159 134; /* #af9f86 */
 
+  /* CSS variables for PlayStation colors */
+  --ps-green: #385d41;
+  --ps-tan: #dfbe73;
+  --ps-sage: #7e976d;
+  --ps-cream: #ede6d2;
+  --ps-brown: #5d4f4d;
+  --ps-beige: #af9f86;
+  --ps-purple: #9b7eda;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -82,28 +91,30 @@ h6 {
 
 /* PlayStation button-like styling */
 .btn-playstation {
-  position: relative;
-  background: linear-gradient(135deg, rgb(56, 93, 65), rgb(93, 79, 77));
-  border: 2px solid rgb(223, 190, 115);
-  color: rgb(237, 230, 210);
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  display: inline-block;
+  background-color: var(--ps-green);
+  color: var(--ps-cream);
   font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.2s;
-  box-shadow: 0 4px 0 0 rgb(126, 151, 109);
-  transform: translateY(0);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 2px solid var(--ps-tan);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-playstation:hover {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 0 rgb(126, 151, 109);
+  background-color: var(--ps-sage);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .btn-playstation:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 0 rgb(126, 151, 109);
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Arcade cabinet styling */
