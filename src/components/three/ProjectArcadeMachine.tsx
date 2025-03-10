@@ -1,11 +1,20 @@
 
 'use client';
 
-import { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Html, Text } from '@react-three/drei';
-import { gsap } from 'gsap';
+import { useRef, useState, useEffect } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
+import { Text, Html, useTexture, MeshReflectorMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { gsap } from 'gsap';
+
+// PlayStation-inspired design colors
+const PS_COLORS = {
+  green: '#385d41',
+  tan: '#dfbe73',
+  sage: '#7e976d',
+  cream: '#ede6d2',
+  brown: '#5d4f4d',
+};
 
 type ProjectData = {
   id: number;
@@ -15,151 +24,242 @@ type ProjectData = {
   link: string;
 };
 
-interface ProjectArcadeMachineProps {
+type ProjectArcadeMachineProps = {
   position: [number, number, number];
   rotation: [number, number, number];
   projectData: ProjectData;
   index: number;
-}
+};
 
 export function ProjectArcadeMachine({ 
   position, 
   rotation, 
-  projectData, 
+  projectData,
   index 
 }: ProjectArcadeMachineProps) {
-  const meshRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
   const screenRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
-  const [active, setActive] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const { viewport } = useThree();
+  
+  // Load project image texture
+  const texture = useTexture(
+    projectData.image || '/textures/project-placeholder.jpg'
+  );
+  
+  // Handle hover state
+  useEffect(() => {
+    document.body.style.cursor = hovered ? 'pointer' : 'auto';
+    return () => {
+      document.body.style.cursor = 'auto';
+    };
+  }, [hovered]);
+
+  // Animate on mount
+  useEffect(() => {
+    if (groupRef.current) {
+      // Initial position (start from below)
+      groupRef.current.position.y = -2;
+      
+      // Animate entrance with a delay based on index
+      gsap.to(groupRef.current.position, {
+        y: position[1],
+        duration: 1.2,
+        delay: index * 0.2 + 0.5,
+        ease: "elastic.out(1, 0.75)"
+      });
+    }
+  }, [position, index]);
   
   // Hover animation
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    
-    // Subtle floating animation
-    const time = state.clock.getElapsedTime();
-    meshRef.current.position.y = position[1] + Math.sin(time * 0.5 + index) * 0.05;
-    
-    // Screen glow effect when hovered
-    if (screenRef.current) {
-      if (hovered) {
-        screenRef.current.material.emissive = new THREE.Color(0x2288ff);
-        screenRef.current.material.emissiveIntensity = 0.5 + Math.sin(time * 3) * 0.2;
-      } else {
-        screenRef.current.material.emissive = new THREE.Color(0x112244);
-        screenRef.current.material.emissiveIntensity = 0.2;
+  useFrame(() => {
+    if (groupRef.current && !clicked) {
+      // Subtle floating animation
+      groupRef.current.position.y = position[1] + Math.sin(Date.now() * 0.001 + index) * 0.05;
+      
+      // Scale up slightly when hovered
+      gsap.to(groupRef.current.scale, {
+        x: hovered ? 1.05 : 1,
+        y: hovered ? 1.05 : 1,
+        z: hovered ? 1.05 : 1,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+      
+      // Glow effect on screen when hovered
+      if (screenRef.current) {
+        gsap.to(screenRef.current.material, {
+          emissiveIntensity: hovered ? 0.8 : 0.5,
+          duration: 0.3
+        });
       }
     }
   });
-
-  const handleClick = () => {
-    setActive(!active);
+  
+  // Handle click to show project details
+  const handleClick = (e: THREE.Event) => {
+    e.stopPropagation();
+    setClicked(!clicked);
     
-    // Animation when clicking
-    if (meshRef.current) {
-      gsap.to(meshRef.current.rotation, {
-        y: meshRef.current.rotation.y + Math.PI * 2,
-        duration: 1,
-        ease: "back.out(1.5)"
-      });
+    if (groupRef.current) {
+      if (!clicked) {
+        // Zoom in when clicked
+        gsap.to(groupRef.current.position, {
+          z: position[2] + 1,
+          y: position[1] + 0.5,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+        gsap.to(groupRef.current.rotation, {
+          y: rotation[1] + Math.PI * 0.02,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+      } else {
+        // Return to original position
+        gsap.to(groupRef.current.position, {
+          x: position[0],
+          y: position[1],
+          z: position[2],
+          duration: 0.8,
+          ease: "power2.inOut"
+        });
+        gsap.to(groupRef.current.rotation, {
+          x: rotation[0],
+          y: rotation[1],
+          z: rotation[2],
+          duration: 0.8,
+          ease: "power2.inOut"
+        });
+      }
     }
   };
 
   return (
     <group 
-      ref={meshRef}
-      position={position} 
+      ref={groupRef}
+      position={position}
       rotation={rotation}
       onClick={handleClick}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
       {/* Cabinet base */}
-      <mesh castShadow receiveShadow position={[0, 0, 0]}>
-        <boxGeometry args={[1.2, 2.2, 0.8]} />
-        <meshStandardMaterial color={hovered ? "#385d41" : "#2a3d2f"} />
+      <mesh 
+        castShadow 
+        receiveShadow
+        position={[0, 0.8, 0]}
+      >
+        <boxGeometry args={[1.2, 2, 0.8]} />
+        <meshStandardMaterial 
+          color={PS_COLORS.green} 
+          roughness={0.3}
+          metalness={0.2}
+        />
+      </mesh>
+      
+      {/* Cabinet top part */}
+      <mesh 
+        castShadow 
+        position={[0, 2.1, -0.1]}
+      >
+        <boxGeometry args={[1.2, 0.6, 0.6]} />
+        <meshStandardMaterial 
+          color={PS_COLORS.brown} 
+          roughness={0.5}
+        />
       </mesh>
       
       {/* Screen */}
       <mesh 
-        ref={screenRef} 
-        castShadow 
-        position={[0, 0.5, 0.41]}
+        ref={screenRef}
+        position={[0, 1.5, 0.41]}
+        castShadow
       >
-        <boxGeometry args={[0.9, 0.7, 0.1]} />
+        <planeGeometry args={[0.9, 0.7]} />
         <meshStandardMaterial 
-          color="#000000" 
-          metalness={0.1} 
+          map={texture}
+          emissive="white"
+          emissiveMap={texture}
+          emissiveIntensity={0.5}
           roughness={0.2}
-          emissive={new THREE.Color(0x112244)}
-          emissiveIntensity={0.2}
         />
       </mesh>
       
       {/* Control panel */}
-      <mesh castShadow position={[0, -0.3, 0.35]} rotation={[-Math.PI / 6, 0, 0]}>
-        <boxGeometry args={[1, 0.7, 0.15]} />
-        <meshStandardMaterial color="#222222" />
+      <mesh 
+        position={[0, 0.7, 0.3]} 
+        rotation={[-Math.PI * 0.15, 0, 0]}
+        castShadow
+      >
+        <boxGeometry args={[1, 0.1, 0.5]} />
+        <meshStandardMaterial color={PS_COLORS.tan} />
       </mesh>
       
       {/* Joystick */}
-      <mesh castShadow position={[-0.3, -0.3, 0.45]} rotation={[-Math.PI / 6, 0, 0]}>
-        <cylinderGeometry args={[0.06, 0.08, 0.15, 12]} />
-        <meshStandardMaterial color="#ff0000" />
-      </mesh>
+      <group position={[-0.3, 0.77, 0.3]}>
+        <mesh castShadow>
+          <cylinderGeometry args={[0.05, 0.07, 0.05, 16]} />
+          <meshStandardMaterial color="black" />
+        </mesh>
+        <mesh position={[0, 0.05, 0]} castShadow>
+          <sphereGeometry args={[0.06, 16, 16]} />
+          <meshStandardMaterial color="red" />
+        </mesh>
+      </group>
       
       {/* Buttons */}
-      {[-0.1, 0.1, 0.3].map((x, i) => (
+      {[0, 0.15, 0.3].map((x, i) => (
         <mesh 
-          key={i} 
-          castShadow 
-          position={[x, -0.3, 0.45]} 
-          rotation={[-Math.PI / 6, 0, 0]}
+          key={i}
+          position={[0.2 + x, 0.77, 0.3]} 
+          castShadow
         >
-          <cylinderGeometry args={[0.04, 0.04, 0.05, 12]} />
-          <meshStandardMaterial color={["#ff9e64", "#dfbe73", "#7e976d"][i]} />
+          <cylinderGeometry args={[0.04, 0.04, 0.03, 16]} />
+          <meshStandardMaterial 
+            color={i === 0 ? 'red' : i === 1 ? 'blue' : 'green'} 
+            roughness={0.3}
+          />
         </mesh>
       ))}
       
-      {/* Project Title */}
+      {/* Project title */}
       <Text
-        position={[0, 1.3, 0.41]}
-        fontSize={0.12}
-        color="#dfbe73"
-        font="/fonts/RetroSerif.woff2"
+        position={[0, 2.45, 0.3]}
+        rotation={[0, 0, 0]}
+        fontSize={0.1}
+        color={PS_COLORS.cream}
+        font="/fonts/RetroSerif.ttf"
+        anchorX="center"
+        anchorY="middle"
         maxWidth={1}
-        textAlign="center"
       >
         {projectData.title}
       </Text>
       
-      {/* Project Thumbnail */}
-      <mesh position={[0, 0.5, 0.42]}>
-        <planeGeometry args={[0.85, 0.65]} />
-        <meshBasicMaterial map={
-          new THREE.TextureLoader().load(projectData.image || '/textures/project-placeholder.jpg')
-        } />
-      </mesh>
-      
-      {/* Project Detail Popup */}
-      {active && (
+      {/* HTML overlay for project details (only show when clicked) */}
+      {clicked && (
         <Html
-          position={[0, 0.5, 1]}
+          position={[0, 1.5, 0.8]}
           transform
           distanceFactor={1.5}
           zIndexRange={[100, 0]}
+          sprite
         >
-          <div className="bg-ps-brown p-4 rounded-lg shadow-lg w-64 grainy-effect">
-            <h3 className="text-lg font-bold text-ps-tan mb-2 ps-title">{projectData.title}</h3>
-            <p className="text-ps-cream text-sm mb-3">{projectData.description}</p>
+          <div 
+            className="bg-ps-brown/90 backdrop-blur-md p-4 rounded-lg shadow-lg border border-ps-tan/50 w-64 transform transition-all"
+            style={{ fontFamily: 'var(--font-geist-mono)' }}
+          >
+            <h3 className="text-ps-cream text-lg font-bold mb-2">{projectData.title}</h3>
+            <p className="text-ps-cream/80 text-sm mb-3">{projectData.description}</p>
             <a 
               href={projectData.link} 
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-ps-green hover:bg-ps-green/80 text-ps-cream px-3 py-1 rounded text-sm inline-block transition-colors"
+              className="inline-block bg-ps-green/90 text-ps-cream px-3 py-1 rounded text-sm hover:bg-ps-green transition-colors"
             >
-              View Project
+              View Project →
             </a>
           </div>
         </Html>

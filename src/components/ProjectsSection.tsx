@@ -1,14 +1,31 @@
 
 'use client';
 
+<<<<<<< HEAD
 import { useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Environment, Text } from '@react-three/drei';
+=======
+import { Suspense, useRef, useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { 
+  OrbitControls, 
+  PerspectiveCamera, 
+  Environment,
+  useProgress,
+  Html,
+  Sky,
+  ContactShadows
+} from '@react-three/drei';
+import { ProjectArcadeMachine } from './three/ProjectArcadeMachine';
+import { gsap } from 'gsap';
+>>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
 
 // Sample project data - replace with your actual projects
 const projectsData = [
   {
     id: 1,
+<<<<<<< HEAD
     title: "3D Portfolio",
     description: "Interactive 3D portfolio with Three.js and React",
     tags: ["React", "Three.js", "TypeScript"],
@@ -27,6 +44,26 @@ const projectsData = [
     description: "PlayStation-inspired design system for modern web apps",
     tags: ["Design", "CSS", "Components"],
     thumbnail: "/images/project3.jpg"
+=======
+    title: "Retro Game UI",
+    description: "A nostalgic blend of PlayStation-era aesthetics with Japanese anime influences.",
+    image: "/textures/project-placeholder.jpg",
+    link: "#project1"
+  },
+  {
+    id: 2,
+    title: "Arcade Portfolio",
+    description: "Interactive 3D arcade machines showcase different projects in an immersive environment.",
+    image: "/textures/project-placeholder.jpg",
+    link: "#project2"
+  },
+  {
+    id: 3,
+    title: "Pixel Art Gallery",
+    description: "A collection of handcrafted pixel art animations and illustrations.",
+    image: "/textures/project-placeholder.jpg",
+    link: "#project3"
+>>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
   }
 ];
 
@@ -40,6 +77,7 @@ function ProjectDiorama({ project, position = [0, 0, 0], rotation = [0, 0, 0] })
         <meshStandardMaterial color="#dfbe73" />
       </mesh>
       
+<<<<<<< HEAD
       {/* Floor */}
       <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[3, 3]} />
@@ -232,7 +270,138 @@ export function ProjectsSection() {
             Next
           </button>
         </div>
+=======
+      {/* Add reflections to floor */}
+      <ContactShadows
+        position={[0, -1.09, 0]}
+        opacity={0.4}
+        scale={30}
+        blur={1}
+        far={10}
+        resolution={256}
+        color="#000000"
+      />
+      
+      {/* Environment map for reflections */}
+      <Environment preset="night" />
+      
+      {/* Sky */}
+      <Sky
+        distance={450000}
+        sunPosition={[0, 1, 0]}
+        inclination={0}
+        azimuth={0.25}
+      />
+      
+      {/* Camera controls */}
+      <PerspectiveCamera makeDefault position={[0, 1, 8]} fov={50} />
+      <OrbitControls 
+        enableZoom={true}
+        enablePan={false}
+        minPolarAngle={Math.PI / 4}
+        maxPolarAngle={Math.PI / 2.2}
+        minDistance={4}
+        maxDistance={10}
+        target={[0, 0, 0]}
+      />
+    </>
+  );
+}
+
+// 2D fallback component for mobile
+function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
+  return (
+    <div className="bg-ps-brown rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+      <div className="h-48 overflow-hidden">
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/textures/project-placeholder.jpg';
+          }}
+        />
+>>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
       </div>
+      <div className="p-4">
+        <h3 className="text-ps-cream text-xl font-bold mb-2 font-serif">{project.title}</h3>
+        <p className="text-ps-cream/80 text-sm mb-4">{project.description}</p>
+        <a 
+          href={project.link} 
+          className="inline-block bg-ps-green/90 text-ps-cream px-4 py-2 rounded font-mono text-sm hover:bg-ps-green transition-colors"
+        >
+          View Project →
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export default function ProjectsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Check if device is mobile
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+  
+  // Animate section on mount
+  useEffect(() => {
+    if (sectionRef.current) {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+      );
+    }
+  }, []);
+  
+  return (
+    <section 
+      ref={sectionRef}
+      id="projects" 
+      className="pt-24 pb-32 relative"
+    >
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl md:text-5xl font-serif text-ps-cream mb-6 text-center">
+          Featured Projects
+        </h2>
+        <p className="text-ps-cream/80 text-lg mb-16 text-center max-w-2xl mx-auto">
+          Explore my work through this interactive arcade. Click on any machine to learn more.
+        </p>
+        
+        {isMobile ? (
+          // Mobile fallback - grid layout
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROJECTS.map(project => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        ) : (
+          // 3D arcade scene for desktop
+          <div className="h-[600px] -mx-4 relative">
+            <Canvas shadows>
+              <Suspense fallback={<LoadingIndicator />}>
+                <ArcadeScene />
+              </Suspense>
+            </Canvas>
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-ps-cream/70 text-sm">
+              Click and drag to look around
+            </div>
+          </div>
+        )}
+      </div>
+      
+      {/* Grain overlay for texture */}
+      <div className="grain-overlay absolute inset-0 pointer-events-none" />
     </section>
   );
 }

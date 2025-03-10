@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+<<<<<<< HEAD
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
@@ -14,16 +15,73 @@
   --ps-cream: 237, 230, 210;
   --ps-brown: 93, 79, 77;
   --ps-beige: 175, 159, 134;
+=======
+  --foreground: #ede6d2;
+  --background: #5d4f4d;
+}
+
+html {
+  scroll-behavior: smooth;
+>>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--foreground);
+  background-color: var(--background);
+  overflow-x: hidden;
+}
+
+/* PlayStation-inspired grain overlay */
+.grain-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFEmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDAgNzkuMTYwNDUxLCAyMDE3LzA1LzA2LTAxOjA4OjIxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxsbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tTC8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc3R5cGUvUmVzb3VyY2VFdmVudCMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTExLTE5VDE2OjU3OjM5LTA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0xMS0xOVQxNjo1ODoyOC0wODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0xMS0xOVQxNjo1ODoyOC0wODowMCI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YWQyM2QxZDQtM2RmYi00ZTk3LWE3OTQtNmZjOWZiOTZiYjRhIiBzdEV2dDp3aGVuPSIyMDE5LTExLTE5VDE2OjU3OjM5LTA4OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoTWFjaW50b3NoKSIvPjwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pg==');
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  pointer-events: none; /* Prevent interference with other elements */
+  z-index: -1; /* Ensure it's behind other content */
+}
+
+/* CRT screen effect for arcade machine screens */
+.crt-screen {
+  position: relative;
+}
+
+.crt-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crt-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Canvas dimensions */
@@ -117,19 +175,6 @@ canvas {
   z-index: 10;
 }
 
-/* PlayStation-inspired light grain overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEDElEQVRogZWaW5LkIAhFb21N7X9HvYC+fFRVd08CgqBHzI8ZJXLgAkZ+7vt+7vt+zL/jOJ7nebbP53met2Uf+9zP8zzHcTzv67rellVl7/t+jnPZWubYZbd1nV3uOM/nOeZnnOe2vPI0D8Z5P9c1lkFdUoZty7qOtYz36z6fccxnfB/Lub+fMGSQZ5dlnvE5lrN8WNdxPWOZbc6ue9a3y7BMln+et+XKMrZMMpnXiLDK0D6U0TZmeQwfluf6kPcMQ5QhtsyYTvIZZdhnlseyWc7W03ZmfbPeWR5lHOcJI7KeE8Fsk3Ud9znKsVyWFesRs8k6t/1ZPsNneeUzygAjSVb2oVx9jjIZWci2v7MP26yfo0zW/33ukCEjyXuWiXJRVqyLfbId7GO/F9s62+Q5ypZtVTmx/m17lsswCSPJ5lk+2x5lsx7ZZ/1M5dX2aRvX/ijvF+cMl23MNrAPZZ53ypGH7g9huUzI7JPxg7LnOSPGLJf1iXWSabHtrGfWP/v+0l+GzTpkm7KtHEA8f8hnPVgHto35iG1jW/3CPNsMW88yWf+MH2wT68m2q/2zbR8wku3Oejx7KJt5hW1a9c+8xnNsB8vKrA6vWddU/qsH4GJ5rjc9I5ZX5VWerGxb9leOqbxmPdl2tc0iZ2S7f+ER5pUsn2Upk+VZD7Wx6pt1VduyzFfOSLYr29g2jUNkO7Mf20qbf9me/V7E6qAhZiLbNg4Jtplt5CDKNrGdsq3a7lnPeaiyPOvKPs+6ZjnWd+sRRrJNqg8HHeY9lVUZ1pVtV/3nAXRQj21ntpVtP4CRLJsDhG1R5RRDalbZJ8vIg5f9s75Z1vYh3pmQPwaPGHlVHNus68oyq73tO+vHeo+M3DOyB5PamXVmXdgGlmFb2QYZ1KXKO4ZPvMayzEPsh/Is+8yjSnXINrMt2aasp5hhffOs+nzACNua9WXb1f7qk7Jkh+zD9nKAab9lXbf9HyNZVvXNumd9VH75UtnE9l6QkVe3xW1UWZXN+rJdajsnmzxoZftsD8swD6n9WQfrPNsNGeYBDoYsm21QHVRWZZhnXR/ykspqH9aJ9c46s05Z16gD64yjw0iWZf1UR5Vhe7J+6sMBpTxFOdWTbVQ51oN9oUfkBUZYhvnhM/3NdmR9VYZ1zzLMX8xLGU7tV10YJx4wwnbn1Gn2UXnVl+3Osvr9wPpl/dk25h3mJ9ZrHprH/K0M28oBJKdEbd84JGwD61BlmYdYN7ZLZVk3tZnto84fMJLlyn5sh+rLurOPylK+6qP5ie2WvEWdVF6Pl24P28ABxEGgemS91T61n23OurGfs05Mn+oV5qk8TNS2bLesO9v35yflTBz/A1BUWxF8tXQWAAAAAElFTkSuQmCC");
-  pointer-events: none;
-  opacity: 0.05;
-  z-index: 9999;
-}
 
 /* Import typography styles */
 @import "../styles/typography.scss";

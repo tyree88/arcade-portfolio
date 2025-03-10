@@ -1,16 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      fontFamily: {
-        serif: ['RetroSerif', 'serif'],
-      },
       colors: {
+<<<<<<< HEAD
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
         "ps-green": "rgb(var(--ps-green) / <alpha-value>)",
@@ -19,40 +17,34 @@ const config = {
         "ps-cream": "rgb(var(--ps-cream) / <alpha-value>)",
         "ps-brown": "rgb(var(--ps-brown) / <alpha-value>)",
         "ps-beige": "rgb(var(--ps-beige) / <alpha-value>)",
+=======
+        'ps-green': '#385d41',
+        'ps-tan': '#dfbe73',
+        'ps-sage': '#7e976d',
+        'ps-cream': '#ede6d2',
+        'ps-brown': '#5d4f4d',
+>>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
-        serif: ["'RetroSerif'", "serif"],
-      },
-      fontSize: {},
-      boxShadow: {
-        'ps': '0 4px 0 0 rgb(126, 151, 109)',
-      },
-      backgroundImage: {
-        'grain': "url('/textures/grain.png')",
-        'crt-scanline': "linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%)",
-        'ps-gradient': "linear-gradient(135deg, rgb(56, 93, 65), rgb(126, 151, 109))",
-        'jp-gradient': "linear-gradient(135deg, rgb(223, 190, 115), rgb(237, 230, 210))",
+        'serif': ['var(--font-geist-sans)', 'serif'],
+        'mono': ['var(--font-geist-mono)', 'monospace'],
       },
       animation: {
-        'scanline': 'scanline 8s linear infinite',
-        'ps-loading': 'ps-loading 1.5s infinite ease-in-out',
+        'float': 'float 8s ease-in-out infinite',
+        'float-slow': 'float 12s ease-in-out infinite alternate',
       },
       keyframes: {
-        scanline: {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(100%)' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) scale(1)' },
+          '50%': { transform: 'translateY(-20px) scale(1.05)' },
         },
-        'ps-loading': {
-          '0%, 100%': { transform: 'translateY(-50%) scale(0.8)', opacity: 0.5 },
-          '50%': { transform: 'translateY(-50%) scale(1.2)', opacity: 1 },
-        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
-  darkMode: "media",
   plugins: [],
-};
-
-export default config;
+}
+export default config
