@@ -175,3 +175,59 @@
 }
 
 /* Additional typography styles can be added here */
+@font-face {
+  font-family: 'RetroSerif';
+  src: url('/fonts/your-retro-font.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.retro-text {
+  font-family: 'RetroSerif', serif;
+  letter-spacing: 0.5px;
+}
+
+.grainy-effect {
+  position: relative;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/textures/grain.png');
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+
+.ps-title {
+  font-family: 'RetroSerif', serif;
+  text-shadow: 2px 2px 0px #000;
+  letter-spacing: 1px;
+}
+
+.jp-block {
+  position: relative;
+  line-height: 1.6;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 5px;
+    width: 4px;
+    height: calc(100% - 10px);
+    background-color: #dfbe73;
+  }
+}
+
+.hover-bounce {
+  transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
