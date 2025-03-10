@@ -1,15 +1,177 @@
-
-/* Typography styles */
-.retro-serif {
-  font-family: 'DM Serif Display', serif;
-}
-
+/* styles/typography.scss */
 @font-face {
   font-family: 'RetroSerif';
-  src: url('/fonts/retroserif.woff2') format('woff2');
+  src: url('/fonts/RetroSerif.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+.font-serif {
+  font-family: 'RetroSerif', serif;
+}
+
+/* PlayStation-inspired text styling */
+.ps-title {
+  font-family: 'RetroSerif', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  color: #ede6d2;
+  text-shadow: 3px 3px 0 #385d41;
+  padding-left: 0.5rem;
+}
+
+.ps-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background-color: #dfbe73;
+}
+
+/* Pixelated text effect */
+.pixel-text {
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ede6d2;
+  text-shadow: 
+    1px 1px 0px #385d41,
+    2px 2px 0px #385d41;
+}
+
+/* Grainy texture effect */
+.grainy-texture {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/textures/grain.png');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* PlayStation loading effect */
+.ps-loading {
+  position: relative;
+  padding-left: 1.5rem;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #dfbe73;
+    animation: ps-loading 1.5s infinite ease-in-out;
+  }
+}
+
+@keyframes ps-loading {
+  0%, 100% {
+    transform: translateY(-50%) scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Anime-inspired text highlight */
+.anime-highlight {
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #dfbe73, #385d41);
+    z-index: -1;
+    transform: skewX(-15deg);
+  }
+}
+
+/* Urban graffiti style text */
+.urban-text {
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  color: #dfbe73;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    background: #5d4f4d;
+    z-index: -1;
+    transform: rotate(-2deg);
+  }
+}
+
+/* Japanese-inspired text block */
+.jp-block {
+  border-left: 4px solid #385d41;
+  padding-left: 1rem;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #dfbe73;
+    transform: translateX(-50%);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #dfbe73;
+    transform: translateX(-50%);
+  }
+}
+/* Retro-gaming inspired typography */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.retro-title {
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pixel-text {
+  font-family: 'VT323', monospace;
+}
+
+/* Funky serif fonts for retro nostalgia */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+.retro-serif {
+  font-family: 'DM Serif Display', serif;
 }
 
 /* Additional typography styles can be added here */
