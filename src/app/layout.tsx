@@ -13,10 +13,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Retro Arcade Portfolio",
-  description: "A nostalgic arcade-themed portfolio",
-};
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+
 
 export default function RootLayout({
   children,
