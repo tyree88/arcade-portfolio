@@ -1,6 +1,5 @@
-
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,12 +10,12 @@ export default {
       colors: {
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
-        "ps-green": "#385d41",
-        "ps-tan": "#dfbe73",
-        "ps-sage": "#7e976d",
-        "ps-cream": "#ede6d2",
-        "ps-brown": "#5d4f4d",
-        "ps-beige": "#af9f86",
+        "ps-green": "rgb(56, 93, 65)",
+        "ps-tan": "rgb(223, 190, 115)",
+        "ps-sage": "rgb(126, 151, 109)",
+        "ps-cream": "rgb(237, 230, 210)",
+        "ps-brown": "rgb(93, 79, 77)",
+        "ps-beige": "rgb(175, 159, 134)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
@@ -25,13 +24,13 @@ export default {
       },
       fontSize: {},
       boxShadow: {
-        'ps': '0 4px 0 0 #7e976d',
+        'ps': '0 4px 0 0 rgb(126, 151, 109)',
       },
       backgroundImage: {
         'grain': "url('/textures/grain.png')",
         'crt-scanline': "linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%)",
-        'ps-gradient': "linear-gradient(135deg, #385d41, #7e976d)",
-        'jp-gradient': "linear-gradient(135deg, #dfbe73, #ede6d2)",
+        'ps-gradient': "linear-gradient(135deg, rgb(56, 93, 65), rgb(126, 151, 109))",
+        'jp-gradient': "linear-gradient(135deg, rgb(223, 190, 115), rgb(237, 230, 210))",
       },
       animation: {
         'scanline': 'scanline 8s linear infinite',
@@ -49,5 +48,8 @@ export default {
       },
     },
   },
+  darkMode: "media",
   plugins: [],
 };
+
+export default config;

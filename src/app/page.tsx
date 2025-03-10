@@ -1,6 +1,9 @@
+'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
+import { Scene } from "@/components/three/Scene";
+
+// Debug for development
+console.log("Page component rendering");
 
 export default function Home() {
   return (
@@ -50,14 +53,10 @@ export default function Home() {
             
             <div className="md:w-1/2">
               <div className="arcade-cabinet">
-                <div className="crt-screen aspect-video w-full relative">
-                  <div className="absolute inset-0 flex items-center justify-center bg-black text-ps-cream p-8 text-center">
-                    <div>
-                      <h2 className="text-2xl md:text-3xl font-bold mb-4 pixel-text">PRESS START</h2>
-                      <p className="text-ps-tan animate-pulse">Insert coin to continue...</p>
-                    </div>
-                  </div>
-                </div>
+                {/* Insert the 3D Scene component */}
+                <Scene />
+                
+                {/* Arcade cabinet controls below the screen */}
                 <div className="flex justify-between mt-4">
                   <div className="w-12 h-12 rounded-full bg-ps-tan border-2 border-ps-cream"></div>
                   <div className="flex space-x-2">

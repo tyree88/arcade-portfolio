@@ -1,5 +1,4 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/preflight";
 @tailwind utilities;
 
 /* Import typography styles if the file exists */
@@ -16,6 +15,36 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Ensure Three.js canvas is visible */
+canvas {
+  display: block !important;
+  outline: none;
+  z-index: 10;
+}
+
+/* Make sure the 3D container is properly positioned */
+.arcade-cabinet {
+  position: relative;
+  z-index: 1;
+}
+
+/* Specific styling for the 3D scene container */
+.arcade-cabinet .three-scene-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Canvas dimensions */
+.arcade-cabinet canvas {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
 }
 
 /* PlayStation-inspired light grain overlay */
@@ -54,33 +83,33 @@ h6 {
 /* PlayStation button-like styling */
 .btn-playstation {
   position: relative;
-  background: linear-gradient(135deg, #385d41, #5d4f4d);
-  border: 2px solid #dfbe73;
-  color: #ede6d2;
+  background: linear-gradient(135deg, rgb(56, 93, 65), rgb(93, 79, 77));
+  border: 2px solid rgb(223, 190, 115);
+  color: rgb(237, 230, 210);
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.2s;
-  box-shadow: 0 4px 0 0 #7e976d;
+  box-shadow: 0 4px 0 0 rgb(126, 151, 109);
   transform: translateY(0);
 }
 
 .btn-playstation:hover {
   transform: translateY(2px);
-  box-shadow: 0 2px 0 0 #7e976d;
+  box-shadow: 0 2px 0 0 rgb(126, 151, 109);
 }
 
 .btn-playstation:active {
   transform: translateY(4px);
-  box-shadow: 0 0 0 0 #7e976d;
+  box-shadow: 0 0 0 0 rgb(126, 151, 109);
 }
 
 /* Arcade cabinet styling */
 .arcade-cabinet {
-  background: linear-gradient(145deg, #385d41, #7e976d);
-  border: 4px solid #dfbe73;
+  background: linear-gradient(145deg, rgb(56, 93, 65), rgb(126, 151, 109));
+  border: 4px solid rgb(223, 190, 115);
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -140,15 +169,15 @@ h6 {
 
 /* Japanese-inspired gradient backgrounds */
 .bg-sunrise {
-  background: linear-gradient(135deg, #dfbe73, #ede6d2);
+  background: linear-gradient(135deg, rgb(223, 190, 115), rgb(237, 230, 210));
 }
 
 .bg-forest {
-  background: linear-gradient(135deg, #385d41, #7e976d);
+  background: linear-gradient(135deg, rgb(56, 93, 65), rgb(126, 151, 109));
 }
 
 .bg-twilight {
-  background: linear-gradient(135deg, #5d4f4d, #af9f86);
+  background: linear-gradient(135deg, rgb(93, 79, 77), rgb(175, 159, 134));
 }
 
 /* Animation for elements */
@@ -163,7 +192,7 @@ h6 {
 /* Pixelated border effect */
 .pixel-border {
   position: relative;
-  border: 2px solid #dfbe73;
+  border: 2px solid rgb(223, 190, 115);
 }
 
 .pixel-border::before {
@@ -174,6 +203,6 @@ h6 {
   right: -4px;
   bottom: -4px;
   background: transparent;
-  border: 2px dashed #385d41;
+  border: 2px dashed rgb(56, 93, 65);
   pointer-events: none;
 }
