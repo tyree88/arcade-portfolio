@@ -1,3 +1,89 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* PlayStation-inspired custom colors */
+:root {
+  --ps-green: #385d41;
+  --ps-tan: #dfbe73;
+  --ps-sage: #7e976d;
+  --ps-cream: #ede6d2;
+  --ps-brown: #5d4f4d;
+}
+
+/* Custom utility classes for PlayStation-inspired colors */
+@layer utilities {
+  .text-ps-green {
+    color: var(--ps-green);
+  }
+  .text-ps-tan {
+    color: var(--ps-tan);
+  }
+  .text-ps-sage {
+    color: var(--ps-sage);
+  }
+  .text-ps-cream {
+    color: var(--ps-cream);
+  }
+  .text-ps-brown {
+    color: var(--ps-brown);
+  }
+
+  .bg-ps-green {
+    background-color: var(--ps-green);
+  }
+  .bg-ps-tan {
+    background-color: var(--ps-tan);
+  }
+  .bg-ps-sage {
+    background-color: var(--ps-sage);
+  }
+  .bg-ps-cream {
+    background-color: var(--ps-cream);
+  }
+  .bg-ps-brown {
+    background-color: var(--ps-brown);
+  }
+
+  .border-ps-green {
+    border-color: var(--ps-green);
+  }
+  .border-ps-tan {
+    border-color: var(--ps-tan);
+  }
+  .border-ps-sage {
+    border-color: var(--ps-sage);
+  }
+  .border-ps-cream {
+    border-color: var(--ps-cream);
+  }
+  .border-ps-brown {
+    border-color: var(--ps-brown);
+  }
+}
+
+/* PlayStation-inspired title styling */
+.ps-title {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 @import "tailwindcss/preflight";
 @tailwind utilities;
 
