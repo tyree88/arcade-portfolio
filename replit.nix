@@ -1,5 +1,5 @@
 { pkgs }: {
-  deps = [
+  buildInputs = [
     pkgs.nodejs-19_x
     pkgs.nodePackages.typescript-language-server
     pkgs.yarn
@@ -10,4 +10,7 @@
     pkgs.nodePackages.postcss
     pkgs.nodePackages.autoprefixer
   ];
+  shellHook = ''
+    echo "Environment setup complete."
+  '';
 }
