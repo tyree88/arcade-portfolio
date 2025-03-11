@@ -70,6 +70,88 @@ body::before {
   z-index: 9999;
 }
 
+/* PlayStation-inspired buttons */
+.btn-playstation {
+  @apply bg-ps-green text-ps-cream py-2 px-6 rounded font-bold relative
+  border-b-4 border-ps-sage shadow-md transition-all duration-200;
+}
+
+.btn-playstation:hover {
+  @apply transform -translate-y-1 border-b-2 shadow-lg;
+}
+
+.btn-playstation:active {
+  @apply transform translate-y-0 border-b-0 shadow-none;
+}
+
+.btn-playstation-small {
+  @apply bg-ps-green text-ps-cream py-1 px-4 rounded font-bold text-sm
+  border-b-2 border-ps-sage shadow-md transition-all duration-200;
+}
+
+.btn-playstation-small:hover {
+  @apply transform -translate-y-0.5 border-b-[1px] shadow-lg;
+}
+
+/* Typography */
+.ps-title {
+  font-family: 'RetroSerif', serif;
+  letter-spacing: 1px;
+}
+
+.pixel-text {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+/* Animations */
+.hover-bounce {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-bounce:hover {
+  transform: scale(1.05);
+}
+
+/* Japanese-inspired typography block */
+.jp-block {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.jp-block::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3px;
+  background: #dfbe73;
+}
+
+/* Arcade cabinet styling */
+.arcade-cabinet {
+  background-color: #385d41;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 8px 0 0 rgba(126, 151, 109, 0.5), 
+              0 12px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pixel-border {
+  position: relative;
+  clip-path: polygon(
+    0% 5px,
+    5px 0%,
+    calc(100% - 5px) 0%,
+    100% 5px,
+    100% calc(100% - 5px),
+    calc(100% - 5px) 100%,
+    5px 100%,
+    0% calc(100% - 5px)
+  );
+}
+
 body {
   color: rgb(var(--foreground));
   background: rgb(var(--background));

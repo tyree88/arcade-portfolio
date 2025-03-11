@@ -118,3 +118,54 @@ export function Scene() {
     </div>
   );
 }
+'use client';
+
+import { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Environment } from '@react-three/drei';
+import * as THREE from 'three';
+
+// Simple floating arcade cabinet
+function ArcadeCabinet() {
+  return (
+    <group position={[0, 0, 0]}>
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[1, 1.8, 0.8]} />
+        <meshStandardMaterial color="#385d41" />
+      </mesh>
+      <mesh position={[0, 0.3, 0.41]}>
+        <boxGeometry args={[0.8, 0.6, 0.05]} />
+        <meshStandardMaterial color="#111" />
+      </mesh>
+      <mesh position={[0, 0.3, 0.44]}>
+        <planeGeometry args={[0.7, 0.5]} />
+        <meshStandardMaterial color="#000055" emissive="#0000ff" emissiveIntensity={0.2} />
+      </mesh>
+    </group>
+  );
+}
+
+export function Scene() {
+  return (
+    <div className="w-full h-64 md:h-96 rounded-lg overflow-hidden">
+      <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
+        <Suspense fallback={null}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} intensity={0.8} />
+          
+          <ArcadeCabinet />
+          
+          <OrbitControls 
+            enablePan={false}
+            autoRotate
+            autoRotateSpeed={1}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 3}
+          />
+          
+          <Environment preset="sunset" />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+}
