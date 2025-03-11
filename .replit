@@ -1,21 +1,12 @@
-<<<<<<< HEAD
-=======
 
 modules = ["nodejs-20", "web"]
->>>>>>> e450355 (Assistant checkpoint: Fix Node.js and Next.js configuration)
 run = "npm run dev"
 
 [nix]
 channel = "stable-23_11"
 
 [deployment]
-<<<<<<< HEAD
-run = ["sh", "-c", "npm run build && npm run start"]
-deploymentTarget = "cloudrun"
-ignorePorts = false
-=======
 run = ["sh", "-c", "npm run build && npm start"]
->>>>>>> e450355 (Assistant checkpoint: Fix Node.js and Next.js configuration)
 
 [[ports]]
 localPort = 3000
