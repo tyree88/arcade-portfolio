@@ -119,7 +119,10 @@ export function ProjectArcadeCabinet({
   };
   
   const handleClick = () => {
-    onSelect(project);
+    // Use setTimeout to avoid state updates during render
+    setTimeout(() => {
+      onSelect(project);
+    }, 0);
   };
   
   // Reset cursor on unmount
