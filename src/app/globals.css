@@ -8,12 +8,12 @@
   --background-end-rgb: 0, 0, 0;
 
   /* PlayStation-inspired custom colors */
-  --ps-green: #385d41;
-  --ps-tan: #dfbe73;
-  --ps-sage: #7e976d;
-  --ps-cream: #ede6d2;
-  --ps-brown: #5d4f4d;
-  --ps-beige: #af9f86;
+  --ps-green: 56, 93, 65;
+  --ps-tan: 223, 190, 115;
+  --ps-sage: 126, 151, 109;
+  --ps-cream: 237, 230, 210;
+  --ps-brown: 93, 79, 77;
+  --ps-beige: 175, 159, 134;
 }
 
 body {
@@ -50,12 +50,12 @@ h1, h2, h3, h4, h5, h6 {
 /* PlayStation button-like styling */
 .btn-playstation {
   display: inline-block;
-  background-color: var(--ps-green);
-  color: var(--ps-cream);
+  background-color: rgb(var(--ps-green));
+  color: rgb(var(--ps-cream));
   font-weight: bold;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
-  border: 2px solid var(--ps-tan);
+  border: 2px solid rgb(var(--ps-tan));
   transition: all 0.2s ease;
   cursor: pointer;
   text-align: center;
@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-playstation:hover {
-  background-color: var(--ps-sage);
+  background-color: rgb(var(--ps-sage));
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -134,7 +134,6 @@ body::before {
 /* Import typography styles */
 @import "../styles/typography.scss";
 
-
 .jp-block {
   position: relative;
   padding-left: 1rem;
@@ -147,7 +146,7 @@ body::before {
   top: 0.5rem;
   bottom: 0.5rem;
   width: 3px;
-  background: #dfbe73;
+  background: rgb(var(--ps-tan));
 }
 
 .hover-bounce {
@@ -160,7 +159,7 @@ body::before {
 
 .pixel-border {
   position: relative;
-  border: 2px solid rgb(223, 190, 115);
+  border: 2px solid rgb(var(--ps-tan));
 }
 
 .pixel-border::before {
@@ -171,20 +170,20 @@ body::before {
   right: -4px;
   bottom: -4px;
   background: transparent;
-  border: 2px dashed rgb(56, 93, 65);
+  border: 2px dashed rgb(var(--ps-green));
   pointer-events: none;
 }
 
 .bg-sunrise {
-  background: linear-gradient(135deg, rgb(223, 190, 115), rgb(237, 230, 210));
+  background: linear-gradient(135deg, rgb(var(--ps-tan)), rgb(var(--ps-cream)));
 }
 
 .bg-forest {
-  background: linear-gradient(135deg, rgb(56, 93, 65), rgb(126, 151, 109));
+  background: linear-gradient(135deg, rgb(var(--ps-green)), rgb(var(--ps-sage)));
 }
 
 .bg-twilight {
-  background: linear-gradient(135deg, rgb(93, 79, 77), rgb(175, 159, 134));
+  background: linear-gradient(135deg, rgb(var(--ps-brown)), rgb(var(--ps-beige)));
 }
 
 .hover-bounce {
@@ -196,12 +195,101 @@ body::before {
 }
 
 .btn-playstation-small {
-  @apply bg-ps-green text-ps-cream py-1 px-4 rounded font-bold text-sm
-  border-b-2 border-ps-sage shadow-md transition-all duration-200;
+  background-color: rgb(var(--ps-green));
+  color: rgb(var(--ps-cream));
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  font-size: 0.875rem;
+  border-bottom: 2px solid rgb(var(--ps-sage));
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 
 .btn-playstation-small:hover {
-  @apply transform -translate-y-0.5 border-b-[1px] shadow-lg;
+  transform: translateY(-2px);
+  border-bottom-width: 1px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 @import "tailwindcss/preflight";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ps-cream: #ede6d2;
+  --ps-tan: #dfbe73;
+  --ps-green: #385d41;
+  --ps-brown: #5d4f4d;
+  --ps-purple: #9b7eda;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: var(--ps-cream);
+  font-family: 'Arial', sans-serif;
+  overflow: hidden; /* Prevent scrolling for full-screen 3D */
+}
+
+.ps-title {
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* PlayStation-inspired button */
+.btn-playstation {
+  background-color: var(--ps-tan);
+  color: black;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-playstation:hover {
+  background-color: var(--ps-cream);
+}
+
+.btn-playstation-small {
+  background-color: var(--ps-tan);
+  color: black;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-playstation-small:hover {
+  background-color: var(--ps-cream);
+}
+
+/* Pixel border effect */
+.pixel-border {
+  position: relative;
+  border: 2px solid var(--ps-tan);
+}
+
+/* Fixed grain overlay for nostalgic feel */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/textures/grain.png');
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 50;
+}

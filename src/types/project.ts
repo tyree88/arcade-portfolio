@@ -30,3 +30,12 @@ export interface Project {
   outcomes?: string[];
   date?: string;
 }
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  thumbnail?: string;
+  category?: string;
+  link?: string;
+}
