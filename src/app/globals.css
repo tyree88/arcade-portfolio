@@ -1,34 +1,7 @@
 @import "tailwindcss";
+
 @layer base {}
 @layer components {}
-@layer utilities {}
-
-:root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-/* PlayStation-inspired custom colors */
-:root {
-  --ps-green: #385d41;
-  --ps-tan: #dfbe73;
-  --ps-sage: #7e976d;
-  --ps-cream: #ede6d2;
-  --ps-brown: #5d4f4d;
-}
-
-/* Custom utility classes for PlayStation-inspired colors */
 @layer utilities {
   .text-ps-green {
     color: var(--ps-green);
@@ -79,6 +52,29 @@ body {
   }
 }
 
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+
+  /* PlayStation-inspired custom colors */
+  --ps-green: #385d41;
+  --ps-tan: #dfbe73;
+  --ps-sage: #7e976d;
+  --ps-cream: #ede6d2;
+  --ps-brown: #5d4f4d;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
 /* PlayStation-inspired title styling */
 .ps-title {
   letter-spacing: 0.05em;
@@ -90,28 +86,6 @@ body {
 
 /* Import typography styles */
 @import "../styles/typography.scss";
-
-:root {
-  /* PlayStation-inspired retro colors */
-  --background: 93 79 77; /* #5d4f4d */
-  --foreground: 237 230 210; /* #ede6d2 */
-  --accent-green: 56 93 65; /* #385d41 */
-  --accent-tan: 223 190 115; /* #dfbe73 */
-  --accent-sage: 126 151 109; /* #7e976d */
-  --accent-beige: 175 159 134; /* #af9f86 */
-
-  /* CSS variables for PlayStation colors */
-  --ps-green: #385d41;
-  --ps-tan: #dfbe73;
-  --ps-sage: #7e976d;
-  --ps-cream: #ede6d2;
-  --ps-brown: #5d4f4d;
-  --ps-beige: #af9f86;
-  --ps-purple: #9b7eda;
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
 /* Ensure Three.js canvas is visible */
 canvas {
