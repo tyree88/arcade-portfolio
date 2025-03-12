@@ -1,6 +1,7 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@layer base {}
+@layer components {}
+@layer utilities {}
 
 :root {
   --foreground-rgb: 255, 255, 255;
