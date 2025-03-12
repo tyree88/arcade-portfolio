@@ -14,21 +14,16 @@ import { ProjectCabinets } from './room-components/ProjectCabinets';
 import { AboutMeSection } from './room-components/AboutMeSection';
 import { ProjectDetails } from './room-components/ProjectDetails';
 
-// Loading component with progress indicator
-function LoadingIndicator() {
-  const { progress } = useProgress();
-  
+// Simple fallback for suspense that doesn't use state updates
+function SuspenseFallback() {
   return (
     <Html center>
       <div className="bg-black/80 text-white p-6 rounded-lg max-w-xs text-center">
         <h3 className="text-lg font-bold mb-2">Loading Arcade Portfolio</h3>
         <div className="w-64 h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
-          <div 
-            className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          ></div>
+          <div className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
         </div>
-        <p className="text-sm opacity-80">{progress.toFixed(0)}% loaded</p>
+        <p className="text-sm opacity-80">Please wait...</p>
       </div>
     </Html>
   );
@@ -62,7 +57,7 @@ export function ArcadeRoom() {
       >
         <color attach="background" args={['#e6e6fa']} />
         
-        <Suspense fallback={<LoadingIndicator />}>
+        <Suspense fallback={<SuspenseFallback />}>
           <PerspectiveCamera
             makeDefault
             position={[8, 8, 8]}
