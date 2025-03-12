@@ -16,10 +16,7 @@ import { ProjectDetails } from './room-components/ProjectDetails';
 
 // Loading component with progress indicator
 function LoadingIndicator() {
-  const { progress, active } = useProgress();
-  
-  // Only render the loading screen when active to prevent unnecessary re-renders
-  if (!active && progress === 100) return null;
+  const { progress } = useProgress();
   
   return (
     <Html center>
