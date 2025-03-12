@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 modules = ["nodejs-20", "web"]
 run = "npm run dev"
 
@@ -7,10 +8,45 @@ channel = "stable-23_11"
 [deployment]
 build = "npm run build"
 run = "npm start"
+=======
+
+run = "npm run dev"
+hidden = [".build", ".config"]
+
+[nix]
+channel = "stable-22_11"
+
+[env]
+XDG_CONFIG_HOME = "/home/runner/.config"
+PORT = "3000"
+NODE_ENV = "development"
+
+[packager]
+language = "nodejs"
+  [packager.features]
+  packageSearch = true
+  guessImports = true
+  enabledForHosting = false
+
+[unitTest]
+language = "nodejs"
+
+[languages]
+[languages.javascript]
+pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
+  [languages.javascript.languageServer]
+  start = "typescript-language-server --stdio"
+
+[deployment]
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+deploymentTarget = "cloudrun"
+>>>>>>> 9c1184d (Assistant checkpoint: Created .replit configuration file for Next.js project)
 
 [[ports]]
 localPort = 3000
 externalPort = 80
+<<<<<<< HEAD
 
 [[ports]]
 localPort = 3001
@@ -27,3 +63,5 @@ externalPort = 3003
 [[ports]]
 localPort = 3004
 externalPort = 3000
+=======
+>>>>>>> 9c1184d (Assistant checkpoint: Created .replit configuration file for Next.js project)
