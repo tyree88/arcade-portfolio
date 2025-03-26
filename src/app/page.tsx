@@ -1,11 +1,6 @@
 
 'use client';
 
-<<<<<<< HEAD
-import React, { Suspense } from "react";
-import dynamic from "next/dynamic";
-import { ProjectsSection } from "@/components/ProjectsSection";
-=======
 import React from "react";
 import { Scene } from "@/components/three/Scene";
 // Placeholder for 3D arcade machine component (requires Three.js and GSAP implementation)
@@ -25,7 +20,6 @@ const ProjectsSection = () => (
     </div>
   </section>
 );
->>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
 
 // Dynamically import the 3D scene component with no SSR to prevent hydration issues
 const ArcadeRoom = dynamic(() => import("@/components/three/ArcadeRoom").then(mod => ({ default: mod.ArcadeRoom })), {
@@ -42,12 +36,6 @@ const ArcadeRoom = dynamic(() => import("@/components/three/ArcadeRoom").then(mo
 
 export default function Home() {
   return (
-<<<<<<< HEAD
-    <main className="h-screen w-full relative bg-black">
-      {/* Full-screen 3D scene */}
-      <ArcadeRoom />
-    </main>
-=======
     <div className="flex flex-col min-h-screen">
       {/* Hero section with PlayStation-inspired styling */}
       <section className="relative h-screen">
@@ -207,6 +195,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
->>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
   );
 }
