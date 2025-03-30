@@ -3,338 +3,41 @@
 @tailwind utilities;
 
 :root {
-<<<<<<< HEAD
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
-
-  /* PlayStation-inspired custom colors */
-  --ps-green: 56, 93, 65;
-  --ps-tan: 223, 190, 115;
-  --ps-sage: 126, 151, 109;
-  --ps-cream: 237, 230, 210;
-  --ps-brown: 93, 79, 77;
-  --ps-beige: 175, 159, 134;
-=======
-  --foreground: #ede6d2;
-  --background: #5d4f4d;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  /* Define colors from the plan */
+  --ps-green: 56, 93, 65; /* #385d41 */
+  --ps-tan: 223, 190, 115; /* #dfbe73 */
+  --ps-sage: 126, 151, 109; /* #7e976d */
+  --ps-cream: 237, 230, 210; /* #ede6d2 */
+  --ps-brown: 93, 79, 77; /* #5d4f4d */
+  --ps-beige: 245, 245, 220; /* Example beige, adjust as needed */
+  --background: 26, 26, 46; /* #1a1a2e - Dark background from plan */
 }
 
-html {
-  scroll-behavior: smooth;
->>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
-}
+/* Example for dark mode if needed later, otherwise remove */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
-  overflow-x: hidden;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background)); /* Use the dark background */
+  /* background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
 }
 
-/* PlayStation-inspired grain overlay */
-.grain-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFEmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDAgNzkuMTYwNDUxLCAyMDE3LzA1LzA2LTAxOjA4OjIxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxsbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tTC8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc3R5cGUvUmVzb3VyY2VFdmVudCMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTExLTE5VDE2OjU3OjM5LTA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0xMS0xOVQxNjo1ODoyOC0wODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0xMS0xOVQxNjo1ODoyOC0wODowMCI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YWQyM2QxZDQtM2RmYi00ZTk3LWE3OTQtNmZjOWZiOTZiYjRhIiBzdEV2dDp3aGVuPSIyMDE5LTExLTE5VDE2OjU3OjM5LTA4OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoTWFjaW50b3NoKSIvPjwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pg==');
-  opacity: 0.03;
-  mix-blend-mode: overlay;
-  pointer-events: none; /* Prevent interference with other elements */
-  z-index: -1; /* Ensure it's behind other content */
-}
-
-/* CRT screen effect for arcade machine screens */
-.crt-screen {
-  position: relative;
-}
-
-.crt-screen::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.crt-screen::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Canvas dimensions */
-.arcade-cabinet canvas {
-  width: 100% !important;
-  height: 100% !important;
-  touch-action: none;
-}
-
-/* PlayStation-inspired title styling */
-.ps-title {
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-family: 'RetroSerif', serif;
-}
-
-/* Retro text effect for headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "RetroSerif", serif;
-  text-shadow: 2px 2px 0px rgba(56, 93, 65, 0.7);
-  letter-spacing: 0.5px;
-}
-
-/* PlayStation button-like styling */
-.btn-playstation {
-  display: inline-block;
-  background-color: rgb(var(--ps-green));
-  color: rgb(var(--ps-cream));
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  border: 2px solid rgb(var(--ps-tan));
-  transition: all 0.2s ease;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-size: 0.875rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.btn-playstation:hover {
-  background-color: rgb(var(--ps-sage));
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.btn-playstation:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Arcade cabinet styling */
-.arcade-cabinet {
-  background: linear-gradient(145deg, rgb(56, 93, 65), rgb(126, 151, 109));
-  border: 4px solid rgb(223, 190, 115);
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.pixel-border {
-  position: relative;
-  clip-path: polygon(
-    0% 5px,
-    5px 0%,
-    calc(100% - 5px) 0%,
-    100% 5px,
-    100% calc(100% - 5px),
-    calc(100% - 5px) 100%,
-    5px 100%,
-    0% calc(100% - 5px)
-  );
-}
-
-/* Specific styling for the 3D scene container */
-.arcade-cabinet .three-scene-container {
-  width: 100%;
-  height: 300px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-/* Ensure Three.js canvas is visible */
-canvas {
-  display: block !important;
-  outline: none;
-  z-index: 10;
-}
-
-
-/* Import typography styles */
-@import "../styles/typography.scss";
-
-.jp-block {
-  position: relative;
-  padding-left: 1rem;
-}
-
-.jp-block::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  width: 3px;
-  background: rgb(var(--ps-tan));
-}
-
-.hover-bounce {
-  transition: transform 0.3s;
-}
-
-.hover-bounce:hover {
-  transform: translateY(-5px);
-}
-
-.pixel-border {
-  position: relative;
-  border: 2px solid rgb(var(--ps-tan));
-}
-
-.pixel-border::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  background: transparent;
-  border: 2px dashed rgb(var(--ps-green));
-  pointer-events: none;
-}
-
-.bg-sunrise {
-  background: linear-gradient(135deg, rgb(var(--ps-tan)), rgb(var(--ps-cream)));
-}
-
-.bg-forest {
-  background: linear-gradient(135deg, rgb(var(--ps-green)), rgb(var(--ps-sage)));
-}
-
-.bg-twilight {
-  background: linear-gradient(135deg, rgb(var(--ps-brown)), rgb(var(--ps-beige)));
-}
-
-.hover-bounce {
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.hover-bounce:hover {
-  transform: scale(1.05);
-}
-
-.btn-playstation-small {
-  background-color: rgb(var(--ps-green));
-  color: rgb(var(--ps-cream));
-  padding: 0.25rem 1rem;
-  border-radius: 0.25rem;
-  font-weight: bold;
-  font-size: 0.875rem;
-  border-bottom: 2px solid rgb(var(--ps-sage));
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.btn-playstation-small:hover {
-  transform: translateY(-2px);
-  border-bottom-width: 1px;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-@import "tailwindcss/preflight";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --ps-cream: #ede6d2;
-  --ps-tan: #dfbe73;
-  --ps-green: #385d41;
-  --ps-brown: #5d4f4d;
-  --ps-purple: #9b7eda;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  color: var(--ps-cream);
-  font-family: 'Arial', sans-serif;
-  overflow: hidden; /* Prevent scrolling for full-screen 3D */
-}
-
-.ps-title {
-  font-family: 'Arial', sans-serif;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-/* PlayStation-inspired button */
-.btn-playstation {
-  background-color: var(--ps-tan);
-  color: black;
-  padding: 0.5rem 1.5rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-playstation:hover {
-  background-color: var(--ps-cream);
-}
-
-.btn-playstation-small {
-  background-color: var(--ps-tan);
-  color: black;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-playstation-small:hover {
-  background-color: var(--ps-cream);
-}
-
-/* Pixel border effect */
-.pixel-border {
-  position: relative;
-  border: 2px solid var(--ps-tan);
-}
-
-/* Fixed grain overlay for nostalgic feel */
-.grain-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/textures/grain.png');
-  opacity: 0.15;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 50;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

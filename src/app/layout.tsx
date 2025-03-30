@@ -1,34 +1,26 @@
-
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google"; // Or choose a font suitable for the theme
+import "./globals.css";
 
-// Font configuration
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-});
+// If using a specific font like Geist Sans/Mono mentioned in the old config:
+// import { GeistSans } from 'geist/font/sans';
+// import { GeistMono } from 'geist/font/mono';
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
-// Metadata configuration
 export const metadata: Metadata = {
-  title: "Retro Arcade Portfolio",
-  description: "A nostalgic arcade-themed portfolio",
+  title: "Arcade Portfolio",
+  description: "Interactive 3D Portfolio",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
-      <body className="bg-black text-white">
-        {children}
-      </body>
+    <html lang="en" /* className={`${GeistSans.variable} ${GeistMono.variable}`} */ >
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

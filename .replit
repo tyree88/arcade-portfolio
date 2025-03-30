@@ -1,80 +1,53 @@
-<<<<<<< HEAD
+# Defines the Nix channel and Replit module settings
 modules = ["nodejs-20", "web"]
 run = "npm run dev"
 
+# Nix environment configuration
 [nix]
-channel = "stable-23_11"
+channel = "stable-23_11" # Using the newer channel specified
 
-[deployment]
-build = "npm run build"
-run = "npm start"
-=======
-
-run = "npm run dev"
-hidden = [".build", ".config"]
-
-[nix]
-channel = "stable-22_11"
-
+# Environment variables
 [env]
 XDG_CONFIG_HOME = "/home/runner/.config"
 PORT = "3000"
 NODE_ENV = "development"
 
+# Packager configuration
 [packager]
 language = "nodejs"
   [packager.features]
   packageSearch = true
   guessImports = true
-  enabledForHosting = false
+  enabledForHosting = false # Keep false as deployment might be external (Vercel/Netlify)
 
+# Unit test configuration (Placeholder, can be configured later if needed)
 [unitTest]
 language = "nodejs"
 
+# Language server configuration for JS/TS
 [languages]
 [languages.javascript]
 pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
   [languages.javascript.languageServer]
   start = "typescript-language-server --stdio"
 
+# Basic deployment configuration (Matches build/start scripts in package.json)
 [deployment]
-build = ["npm", "run", "build"]
-run = ["npm", "run", "start"]
-deploymentTarget = "cloudrun"
->>>>>>> 9c1184d (Assistant checkpoint: Created .replit configuration file for Next.js project)
+build = "npm run build"
+run = "npm start"
+# deploymentTarget = "cloudrun" # Commented out, can be enabled if needed
 
+# Port mapping for the development server
 [[ports]]
 localPort = 3000
-externalPort = 80
-<<<<<<< HEAD
-<<<<<<< HEAD
+externalPort = 80 # Standard external port for web services on Replit
 
-[[ports]]
-localPort = 3001
-externalPort = 3001
-
-[[ports]]
-localPort = 3002
-externalPort = 3002
-
-[[ports]]
-localPort = 3003
-externalPort = 3003
-
-[[ports]]
-localPort = 3004
-externalPort = 3000
-=======
->>>>>>> 9c1184d (Assistant checkpoint: Created .replit configuration file for Next.js project)
-=======
-
+# Workflow for running the development server easily
 [workflows]
-
 [[workflows.workflow]]
 name = "Development Server"
-author = 419224
+# author = 419224 # Removed author ID as it's specific to the original creator
+run = "npm run dev" # Simplified workflow definition
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
->>>>>>> c062950 (Checkpoint before assistant change: Configure Replit workflow for Next.js development server.)
+# Hidden files in Replit UI
+hidden = [".build", ".config", ".next", "node_modules"]

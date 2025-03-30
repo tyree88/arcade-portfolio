@@ -1,14 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    // Adjusted paths to match the new structure using src/app
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    // Removed ./src/pages as we are using the app router
   ],
   theme: {
     extend: {
       colors: {
-<<<<<<< HEAD
+        // Using the CSS variable definitions from globals.css
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
         "ps-green": "rgb(var(--ps-green) / <alpha-value>)",
@@ -17,15 +18,9 @@ const config = {
         "ps-cream": "rgb(var(--ps-cream) / <alpha-value>)",
         "ps-brown": "rgb(var(--ps-brown) / <alpha-value>)",
         "ps-beige": "rgb(var(--ps-beige) / <alpha-value>)",
-=======
-        'ps-green': '#385d41',
-        'ps-tan': '#dfbe73',
-        'ps-sage': '#7e976d',
-        'ps-cream': '#ede6d2',
-        'ps-brown': '#5d4f4d',
->>>>>>> c645395 (Assistant checkpoint: Implement 3D arcade machine showcase)
       },
       fontFamily: {
+        // Keeping the font definitions, ensure these variables are set up in layout.tsx if used
         'serif': ['var(--font-geist-sans)', 'serif'],
         'mono': ['var(--font-geist-mono)', 'monospace'],
       },
